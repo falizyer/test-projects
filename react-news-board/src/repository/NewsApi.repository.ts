@@ -6,6 +6,7 @@ import {
     ResponseStatus,
     Source
 } from "../model/NewsApi.model";
+import { AxiosPromise } from "axios";
 
 export interface ArticleResponse {
     status: ResponseStatus.OK;
@@ -58,7 +59,7 @@ class NewsApiRepository extends AbstractRepository {
 
     private apiKey: string = process.env.REACT_APP_API_NEWSAPI_KEY as string;
 
-    public getTopHeadlines(params: Omit<ArticleParams, AuthenticateFields> = {}) {
+    public getTopHeadlines(params: Omit<ArticleParams, AuthenticateFields> = {}): AxiosPromise<ArticleResponse> {
         return this.callGet<ArticleResponse>({ url: `top-headlines` }, {
             params: {
                 ...params,
@@ -67,7 +68,7 @@ class NewsApiRepository extends AbstractRepository {
         });
     }
 
-    public getEverything(params: Omit<EverythingParams, AuthenticateFields> = {}) {
+    public getEverything(params: Omit<EverythingParams, AuthenticateFields> = {}): AxiosPromise<ArticleResponse> {
         return this.callGet<ArticleResponse>({ url: "everything" }, {
             params: {
                 ...params,
@@ -76,7 +77,7 @@ class NewsApiRepository extends AbstractRepository {
         });
     }
 
-    public getSources(params: Omit<SourcesParams, AuthenticateFields> = {}) {
+    public getSources(params: Omit<SourcesParams, AuthenticateFields> = {}): AxiosPromise<SourceResponse> {
         return this.callGet<SourceResponse>({ url: "sources" }, {
             params: {
                 ...params,

@@ -4,7 +4,7 @@ import { UserToken } from "./model/Authorization.model";
 
 export interface AppStoreState {
     language: Languages;
-    token: UserToken | null;
+    token?: UserToken;
 
     // TODO define type
     dispatch?: any;
@@ -12,7 +12,7 @@ export interface AppStoreState {
 
 const defaultState = {
     language: Languages.en,
-    token: null
+    token: void 0
 };
 
 export enum AppActions {
