@@ -17,7 +17,7 @@ const defaultState = {
 
 export enum AppActions {
     APP_SET_LANGUAGE = "APP_SET_LANGUAGE",
-    APP_SET_TOKEN = "APP_SET_TOKEN"
+    APP_SIGN_IN = "APP_SIGN_IN"
 }
 
 export interface IAppAction<T = any> {
@@ -32,7 +32,7 @@ function reducer(state: Omit<AppStoreState, "dispatch">, action: IAppAction) {
                 ...state,
                 language: action.payload
             };
-        case AppActions.APP_SET_TOKEN:
+        case AppActions.APP_SIGN_IN:
             return {
                 ...state,
                 token: action.payload
