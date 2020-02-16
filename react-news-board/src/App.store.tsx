@@ -4,7 +4,6 @@ import { UserToken } from "./model/Authorization.model";
 
 export interface AppStoreState {
     language: Languages;
-
     token?: UserToken;
 
     // TODO define type
