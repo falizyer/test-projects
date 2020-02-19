@@ -6,6 +6,8 @@ import { Article, Countries } from '../model/NewsApi.model';
 import TopHeadLinesFormComponent from './home/TopHeadLinesForm';
 import { useTranslation } from 'react-i18next';
 
+import './Home.scss';
+
 export default function () {
     const { t } = useTranslation();
     const [ filter, setFilter ] = useState<ArticleParams>({
@@ -18,9 +20,9 @@ export default function () {
     });
     const { articles, isPending, error } = useGetTopHeadlines(filter);
     return (
-        <section>
-            <header>{t('app.header.title.home')}</header>
-            <div>
+        <section className="rnb-home-component">
+            <header className="rnb-home-component__header rnb-header">{t('app.header.title.home')}</header>
+            <div className="rnb-home-component__content rnb-content">
                 <TopHeadLinesFormComponent
                     defaultValues={filter}
                     onSubmit={value => setFilter(value)}

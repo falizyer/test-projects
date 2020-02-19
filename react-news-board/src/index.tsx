@@ -10,6 +10,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import AuthStore from "./store/AuthStore";
 import AppStore from "./App.store";
+import ThemeStore from "./store/ThemeStore";
 import App from './App';
 
 import './index.scss';
@@ -33,7 +34,9 @@ ReactDOM.render((
     <BrowserRouter>
         <AppStore>
             <AuthStore>
-                <App/>
+                <ThemeStore>
+                    <App/>
+                </ThemeStore>
             </AuthStore>
         </AppStore>
     </BrowserRouter>
