@@ -1,50 +1,35 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
-    BrowserRouter,
     Switch,
     Route,
     Redirect
 } from 'react-router-dom';
-import './App.scss';
-import { RouteComponentProps } from "react-router";
 import { ROUTES } from "./App.constant";
+import { AuthStoreContext } from "./store";
 
-import AppStore, { AppStoreContext, AppStoreState } from './App.store';
-import RestrictedRoute from 'common/RestrictedRoute';
+import Header from 'common/Header';
 
-function App() {
+import './App.scss';
+
+export default function () {
+    const authState = useContext(AuthStoreContext);
     return (
-        <BrowserRouter>
-            <AppStore>
-                <AppStoreContext.Consumer>
-                    {(app: AppStoreState) => (
-                        <>
-                            <aside/>
-                            <main className="app-main">
-                                <header className="app-main__header">
-                                    <Route render={(props: RouteComponentProps<any>) => (<></>)}/>
-                                </header>
-                                <section className="app-main__content">
-                                    <Switch>
-                                        <Route path={ROUTES.signIn.path} component={ROUTES.signIn.component}
-                                               exact={true}/>
+        <>
+            <Header>
+                <div>Application header content</div>
+            </Header>
 
-                                        <RestrictedRoute route={ROUTES.home} token={app.token}/>
-                                        <RestrictedRoute route={ROUTES.news} token={app.token}/>
-                                        <RestrictedRoute route={ROUTES.about} token={app.token}/>
-                                    </Switch>
-                                </section>
-                            </main>
-                            <div className="app-overlay"/>
-                            <Route render={() => app.token
-                                ? <Redirect to={ROUTES.home.path}/>
-                                : <Redirect to={ROUTES.signIn.path}/>}/>
-                        </>
-                    )}
-                </AppStoreContext.Consumer>
-            </AppStore>
-        </BrowserRouter>
+            <Switch>
+                <Route path={ROUTES.signIn.path} component={ROUTES.signIn.component} exact={ROUTES.signIn.exact}/>
+
+                <Route path={ROUTES.home.path} component={ROUTES.home.component} exact={ROUTES.home.exact}/>
+                <Route path={ROUTES.news.path} component={ROUTES.news.component} exact={ROUTES.news.exact}/>
+                <Route path={ROUTES.about.path} component={ROUTES.about.component} exact={ROUTES.about.exact}/>
+            </Switch>
+
+            <Route render={() => (authState.token
+                ? <Redirect to={ROUTES.home.path}/>
+                : <Redirect to={ROUTES.signIn.path}/>)}/>
+        </>
     );
 }
-
-export default App;

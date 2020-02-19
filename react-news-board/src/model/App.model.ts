@@ -6,6 +6,7 @@ interface AppRoutes {
     about: string;
     signIn: string;
     home: string;
+    notFound: string;
 }
 
 export type Routes = {
