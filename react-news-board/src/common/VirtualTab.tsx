@@ -10,7 +10,7 @@ export interface VirtualTabProps {
     visibleTabs?: number;
 }
 
-const VirtualTab: React.FC<VirtualTabProps> = (props: PropsWithChildren<VirtualTabProps>) => {
+export default function (props: PropsWithChildren<VirtualTabProps>) {
     const [ tabPage, setTabPage ] = useState(0);
     const [ tabIndex, setTabIndex ] = useState(0);
     const [ visibleTabs, setVisibleTabs ] = useState(props.visibleTabs || 5);
@@ -57,5 +57,4 @@ const VirtualTab: React.FC<VirtualTabProps> = (props: PropsWithChildren<VirtualT
             </div>
         </div>
     );
-};
-export default VirtualTab;
+}

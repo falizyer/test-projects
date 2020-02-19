@@ -1,50 +1,24 @@
 import React, { PropsWithChildren, useReducer } from 'react';
-import { Languages } from "./model/NewsApi.model";
-import { UserToken } from "./model/Authorization.model";
+import { AppStoreState, AppStoreContext, defaultAppStoreState, IAction, AppActions } from "./store";
 
-export interface AppStoreState {
-    language: Languages;
-    token?: UserToken;
-
-    // TODO define type
-    dispatch?: any;
-}
-
-const defaultState = {
-    language: Languages.en,
-    token: void 0
-};
-
-export enum AppActions {
-    APP_SET_LANGUAGE = "APP_SET_LANGUAGE",
-    APP_SET_TOKEN = "APP_SET_TOKEN"
-}
-
-export interface IAppAction<T = any> {
-    type: AppActions;
-    payload?: T;
-}
-
-function reducer(state: Omit<AppStoreState, "dispatch">, action: IAppAction) {
+function reducer(state: Omit<AppStoreState, "dispatch">, action: IAction<AppActions>) {
     switch (action.type) {
-        case AppActions.APP_SET_LANGUAGE:
+        case AppActions.APP_UPDATE_LANGUAGE:
             return {
                 ...state,
                 language: action.payload
             };
-        case AppActions.APP_SET_TOKEN:
+        case AppActions.APP_UPDATE_TITLE:
             return {
                 ...state,
-                token: action.payload
+                title: action.payload
             };
     }
     return state;
 }
 
-export const AppStoreContext = React.createContext<AppStoreState>(defaultState);
-
-const AppStore: React.FC = (props: PropsWithChildren<{}>) => {
-    const [ state, dispatch ] = useReducer(reducer, defaultState);
+export default function (props: PropsWithChildren<{}>) {
+    const [ state, dispatch ] = useReducer(reducer, defaultAppStoreState);
 
     return (
         <AppStoreContext.Provider value={{
@@ -55,5 +29,3 @@ const AppStore: React.FC = (props: PropsWithChildren<{}>) => {
         </AppStoreContext.Provider>
     );
 };
-
-export default AppStore;

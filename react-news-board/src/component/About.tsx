@@ -1,10 +1,8 @@
 import React, { PropsWithChildren } from 'react';
 
-const About: React.FC = (props: PropsWithChildren<{}>) => {
+export default function (props: PropsWithChildren<{}>) {
 
     return (
-        <></>
+        <section>about</section>
     );
 };
-
-export default About;
