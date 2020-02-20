@@ -1,6 +1,7 @@
 import React from 'react';
 import { Languages } from './model/NewsApi.model';
 import { UserToken } from './model/Authorization.model';
+import { strict } from "assert";
 
 export interface IAction<T, A = any> {
     type: T;
@@ -33,6 +34,12 @@ export interface AuthStoreState {
     dispatch?: any;
 }
 
+export interface ThemeStoreState {
+    theme: string;
+
+    setTheme?: any;
+}
+
 export const defaultAppStoreState = {
     title: 'app.title',
     language: Languages.en
@@ -42,5 +49,10 @@ export const defaultAuthStoreState = {
     token: void 0
 };
 
+export const defaultThemeStoreState = {
+    theme: ''
+};
+
 export const AppStoreContext = React.createContext<AppStoreState>(defaultAppStoreState);
 export const AuthStoreContext = React.createContext<AuthStoreState>(defaultAuthStoreState);
+export const ThemeStoreContext = React.createContext<ThemeStoreState>(defaultThemeStoreState);
