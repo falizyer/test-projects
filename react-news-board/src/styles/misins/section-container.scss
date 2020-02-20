@@ -1,0 +1,37 @@
+@mixin rnb-section-container-header() {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin rnb-section-container-content($include: false) {
+  @if($include) {
+    @include rnb-section-container();
+  }
+}
+
+@mixin rnb-section-container-footer() {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin rnb-section-container($direction: column, $include: false) {
+  & {
+    display: flex;
+    flex-direction: $direction;
+    margin: $RNB_DEFAULT_CONTAINER_MARGIN;
+    padding: $RNB_DEFAULT_CONTAINER_PADDING;
+
+    & > header.rnb-header {
+      @include rnb-section-container-header();
+    }
+
+    & > div.rnb-content,
+    & > section.rnb-content {
+      @include rnb-section-container-content($include);
+    }
+
+    & > footer.rnb-footer {
+      @include rnb-section-container-footer();
+    }
+  }
+}

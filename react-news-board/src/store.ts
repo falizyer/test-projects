@@ -1,7 +1,11 @@
 import React from 'react';
 import { Languages } from './model/NewsApi.model';
 import { UserToken } from './model/Authorization.model';
-import { strict } from "assert";
+
+export enum AppTheme {
+    DARK = 'dark',
+    DEFAULT = 'default'
+}
 
 export interface IAction<T, A = any> {
     type: T;
@@ -50,7 +54,7 @@ export const defaultAuthStoreState = {
 };
 
 export const defaultThemeStoreState = {
-    theme: ''
+    theme: AppTheme.DEFAULT
 };
 
 export const AppStoreContext = React.createContext<AppStoreState>(defaultAppStoreState);

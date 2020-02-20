@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import ApiRecord from '../common/ApiRecord';
 import { ArticleParams, useGetTopHeadlines } from '../repository/NewsApi.repository';
 import ArticleComponent from '../common/Article';
@@ -7,8 +7,10 @@ import TopHeadLinesFormComponent from './home/TopHeadLinesForm';
 import { useTranslation } from 'react-i18next';
 
 import './Home.scss';
+import { ThemeStoreContext } from "../store";
 
 export default function () {
+    const { theme } = useContext(ThemeStoreContext);
     const { t } = useTranslation();
     const [ filter, setFilter ] = useState<ArticleParams>({
         country: Countries.us,
@@ -20,7 +22,7 @@ export default function () {
     });
     const { articles, isPending, error } = useGetTopHeadlines(filter);
     return (
-        <section className="rnb-home-component">
+        <section className={`rnb-home-component rnb-${theme}-theme`}>
             <header className="rnb-home-component__header rnb-header">{t('app.header.title.home')}</header>
             <div className="rnb-home-component__content rnb-content">
                 <TopHeadLinesFormComponent

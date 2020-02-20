@@ -2,6 +2,7 @@
 @import "./src/styles/mixins";
 
 .rnb-home-component {
-  @include rnb-container(column, true);
+  @include rnb-theme();
+  @include rnb-section-container(column, true);
 
 }

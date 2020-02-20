@@ -2,28 +2,29 @@ import React, { useContext, Suspense } from 'react';
 import {
     Switch,
     Route,
-    Redirect, Link
+    Redirect
 } from 'react-router-dom';
 import { getRouteNavigation, ROUTES } from "./App.constant";
-import { AuthStoreContext } from "./store";
+import { AuthStoreContext, ThemeStoreContext } from "./store";
 
 import Header from 'common/Header';
 
+import Navigation from "./common/Navigation";
+import NotFound from "./common/NotFound";
+import SignInTray from "./component/SignInTray";
+
 import './App.scss';
+import ThemeSwitcher from "./common/ThemeSwitcher";
 
 export default function () {
-    const authState = useContext(AuthStoreContext);
-    const routes = getRouteNavigation();
+    const authStore = useContext(AuthStoreContext);
+
     return (
         <>
             <Header>
-                <nav>
-                    <ul>
-                        {routes.map(route => (
-                            <li key={route.path}><Link to={route.path}>{route.path}</Link></li>
-                        ))}
-                    </ul>
-                </nav>
+                <Navigation/>
+                {authStore.token ? <div>user icon</div> : <SignInTray/>}
+                <ThemeSwitcher/>
             </Header>
 
             <Suspense fallback={<div>loading</div>}>
@@ -33,12 +34,14 @@ export default function () {
                     <Route path={ROUTES.home.path} component={ROUTES.home.component} exact={ROUTES.home.exact}/>
                     <Route path={ROUTES.news.path} component={ROUTES.news.component} exact={ROUTES.news.exact}/>
                     <Route path={ROUTES.about.path} component={ROUTES.about.component} exact={ROUTES.about.exact}/>
+
+                    <Route>
+                        <NotFound/>
+                    </Route>
                 </Switch>
             </Suspense>
 
-            <Route render={() => (authState.token
-                ? <Redirect to={ROUTES.home.path}/>
-                : <Redirect to={ROUTES.signIn.path}/>)}/>
+            <Route render={() => (<Redirect to={ROUTES.home.path}/>)}/>
         </>
     );
 }

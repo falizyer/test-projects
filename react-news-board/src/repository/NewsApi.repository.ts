@@ -7,8 +7,11 @@ import {
     Source
 } from "../model/NewsApi.model";
 import { AxiosError } from "axios";
-import { Reducer, useEffect, useReducer } from "react";
+import { PropsWithChildren, Reducer, useCallback, useContext, useEffect, useMemo, useReducer } from "react";
 import axios from 'axios';
+import { SignInTrayForm } from "../component/SignInTray";
+import { UserToken } from "../model/Authorization.model";
+import { AuthStoreContext } from "../store";
 
 const newsApiAxios = axios.create({
     baseURL: process.env.REACT_APP_API_NEWSAPI_HOST as string
@@ -32,6 +35,10 @@ export interface ArticleResponse {
     status: ResponseStatus.OK;
     totalResults: number;
     articles: Article[];
+}
+
+export interface AuthResponse {
+    token: UserToken;
 }
 
 export interface SourceResponse {
@@ -81,10 +88,11 @@ export interface RepositoryAction<T> {
 }
 
 type NewsApiAction =
-    RepositoryAction<Partial<ArticlesState>> | any ;
+    RepositoryAction<Partial<ArticlesState>> | RepositoryAction<Partial<AuthState>> | any ;
 type ArticlesReducer = Reducer<ArticlesState, NewsApiAction>;
 type SourcesReducer = Reducer<SourcesState, NewsApiAction>;
 type LatestNewsReducer = Reducer<ArticlesState, NewsApiAction>;
+type AuthReducer = Reducer<SourcesState, NewsApiAction>;
 
 const reducerArticles: ArticlesReducer = (state: ArticlesState,
                                           action: NewsApiAction) => {
@@ -135,6 +143,30 @@ const reducerSources: ArticlesReducer = (state: ArticlesState,
     return state;
 };
 
+const reducerAuth: ArticlesReducer = (state: AuthState,
+                                      action: NewsApiAction) => {
+    switch (action.type) {
+        case RepositoryActionType.SUCCESS:
+            return {
+                token: {},
+                isPending: false,
+                error: void 0
+            };
+        case RepositoryActionType.FAILED:
+            return {
+                ...state,
+                isPending: false,
+                error: action.payload
+            };
+        case RepositoryActionType.PENDING:
+            return {
+                ...state,
+                isPending: true
+            };
+    }
+    return state;
+};
+
 export interface RepositoryState<T> {
     isPending: boolean;
     error?: Error;
@@ -149,7 +181,12 @@ export interface SourcesState extends RepositoryState<ArticleResponse> {
     sources?: Source[];
 }
 
+export interface AuthState extends RepositoryState<ArticleResponse> {
+    token?: UserToken;
+}
+
 export const useGetTopHeadlines = (params: ArticleParams): ArticlesState => {
+    const source = useMemo(() => CancelToken.source(), []);
     const [ state, dispatch ] = useReducer<ArticlesReducer>(reducerArticles, {
         isPending: true
     });
@@ -158,7 +195,6 @@ export const useGetTopHeadlines = (params: ArticleParams): ArticlesState => {
         if (!state.isPending) {
             dispatch({ type: RepositoryActionType.PENDING });
         }
-        const source = CancelToken.source();
         newsApiAxios.get<ArticleResponse>(`/top-headlines`, { params, cancelToken: source.token })
             .then(response => {
                 const { articles, totalResults } = response.data;
@@ -196,7 +232,6 @@ export const useGetEverything = (params: EverythingParams) => {
                 dispatch({ type: RepositoryActionType.SUCCESS, payload: { articles, totalResults } });
             })
             .catch(error => {
-                console.log(error);
                 dispatch({ type: RepositoryActionType.FAILED, payload: error });
             });
         return () => {
@@ -231,44 +266,22 @@ export const useGetSources = (params: SourcesParams) => {
     return state;
 };
 
-export default module.exports;
-
-// class NewsApiRepository extends AbstractRepository {
-//
-//     private apiKey: string = process.env.REACT_APP_API_NEWSAPI_KEY as string;
-//
-//     public getTopHeadlines(params: Omit<ArticleParams, AuthenticateFields> = {}): AxiosPromise<ArticleResponse> {
-//         return this.callGet<ArticleResponse>({ url: `top-headlines` }, {
-//             params: {
-//                 ...params,
-//                 apiKey: this.apiKey
-//             }
-//         });
-//     }
-//
-//     public getEverything(params: Omit<EverythingParams, AuthenticateFields> = {}): AxiosPromise<ArticleResponse> {
-//         return this.callGet<ArticleResponse>({ url: "everything" }, {
-//             params: {
-//                 ...params,
-//                 apiKey: this.apiKey
-//             }
-//         });
-//     }
-//
-//     public getSources(params: Omit<SourcesParams, AuthenticateFields> = {}): AxiosPromise<SourceResponse> {
-//         return this.callGet<SourceResponse>({ url: "sources" }, {
-//             params: {
-//                 ...params,
-//                 apiKey: this.apiKey
-//             }
-//         });
-//     }
-//
-//     protected getAuthorization(): string {
-//         return "";
-//     }
-// }
-//
-// export default new NewsApiRepository({
-//     baseUrl: process.env.REACT_APP_API_NEWSAPI_HOST as string
-// });
+export function useSignIn(defaultParams?: SignInTrayForm): [ AuthState, (params: SignInTrayForm) => void ] {
+    const [ state, dispatch ] = useReducer<AuthReducer>(reducerAuth, {
+        isPending: true
+    });
+    return [
+        state,
+        (params: SignInTrayForm) => {
+            dispatch({ type: RepositoryActionType.SUCCESS, payload: {} });
+            // newsApiAxios.post<AuthResponse>(``, params)
+            //     .then(response => {
+            //         const { token } = response.data;
+            //         dispatch({ type: RepositoryActionType.SUCCESS, payload: token });
+            //     })
+            //     .catch(error => {
+            //         dispatch({ type: RepositoryActionType.FAILED, payload: error });
+            //     })
+        }
+    ];
+}

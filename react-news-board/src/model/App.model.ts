@@ -1,5 +1,5 @@
-import { RouteProps } from "react-router-dom";
-import React from "react";
+import { RouteProps } from 'react-router-dom';
+import React from 'react';
 
 interface AppRoutes {
     news: string;
