@@ -1,4 +1,4 @@
 export interface UserToken {
-    name: string;
-    expiration: number;
+  name: string;
+  expiration: number;
 }

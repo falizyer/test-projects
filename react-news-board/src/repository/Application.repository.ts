@@ -5,8 +5,7 @@ import axios from "axios";
 axios.interceptors.response.use(config => config);
 
 class ApplicationRepository extends AbstractRepository {
-
-    protected getAuthorization(): string {
-        return "Bearer base64token";
-    }
+  protected getAuthorization(): string {
+    return "Bearer base64token";
+  }
 }

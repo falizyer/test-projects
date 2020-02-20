@@ -1,30 +1,32 @@
-import React, { PropsWithChildren } from 'react';
-import { RouteProps } from 'react-router';
+import React, { PropsWithChildren } from "react";
+import { RouteProps } from "react-router";
 import { Article, Source } from "../model/NewsApi.model";
-import { useGetEverything } from 'repository/NewsApi.repository';
-import './TabArticles.scss';
+import { useGetEverything } from "repository/NewsApi.repository";
+import "./TabArticles.scss";
 import ApiRecordComponent from "common/ApiRecord";
-import ArticleComponent from 'common/Article';
+import ArticleComponent from "common/Article";
 
 export interface TabArticleProps extends RouteProps {
-    source: Source;
+  source: Source;
 }
 
-export default function (props: PropsWithChildren<TabArticleProps>) {
-    const { articles, isPending, error } = useGetEverything({
-        sources: [ props.source.name ]
-    });
+export default function(props: PropsWithChildren<TabArticleProps>) {
+  const { articles, isPending, error } = useGetEverything({
+    sources: [props.source.name]
+  });
 
-    return (
-        <section className="tab-articles">
-            <header>
-                {props.source.name}
-            </header>
-            <div>
-                <ApiRecordComponent records={articles} isPending={isPending} error={error}>
-                    {(article: Article) => (<ArticleComponent {...article}/>)}
-                </ApiRecordComponent>
-            </div>
-        </section>
-    );
-};
+  return (
+    <section className="tab-articles">
+      <header>{props.source.name}</header>
+      <div>
+        <ApiRecordComponent
+          records={articles}
+          isPending={isPending}
+          error={error}
+        >
+          {(article: Article) => <ArticleComponent {...article} />}
+        </ApiRecordComponent>
+      </div>
+    </section>
+  );
+}

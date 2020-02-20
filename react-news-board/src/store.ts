@@ -1,62 +1,68 @@
-import React from 'react';
-import { Languages } from './model/NewsApi.model';
-import { UserToken } from './model/Authorization.model';
+import React from "react";
+import { Languages } from "./model/NewsApi.model";
+import { UserToken } from "./model/Authorization.model";
 
 export enum AppTheme {
-    DARK = 'dark',
-    DEFAULT = 'default'
+  DARK = "dark",
+  DEFAULT = "default"
 }
 
 export interface IAction<T, A = any> {
-    type: T;
-    payload?: A;
+  type: T;
+  payload?: A;
 }
 
 export enum AppActions {
-    APP_UPDATE_LANGUAGE = "APP_UPDATE_LANGUAGE",
-    APP_UPDATE_TITLE = "APP_UPDATE_TITLE"
+  APP_UPDATE_LANGUAGE = "APP_UPDATE_LANGUAGE",
+  APP_UPDATE_TITLE = "APP_UPDATE_TITLE"
 }
 
 export enum AuthActions {
-    AUTH_SIGN_IN = "AUTH_SIGN_IN",
-    AUTH_SIGN_OUT = "AUTH_SIGN_OUT",
-    AUTH_REFRESH = "AUTH_REFRESH"
+  AUTH_SIGN_IN = "AUTH_SIGN_IN",
+  AUTH_SIGN_OUT = "AUTH_SIGN_OUT",
+  AUTH_REFRESH = "AUTH_REFRESH"
 }
 
 export interface AppStoreState {
-    title: string;
-    language: Languages;
+  title: string;
+  language: Languages;
 
-    // TODO define type
-    dispatch?: any;
+  // TODO define type
+  dispatch?: any;
 }
 
 export interface AuthStoreState {
-    token?: UserToken;
+  token?: UserToken;
 
-    // TODO define type
-    dispatch?: any;
+  // TODO define type
+  dispatch?: any;
 }
 
 export interface ThemeStoreState {
-    theme: string;
+  theme: string;
 
-    setTheme?: any;
+  setTheme?: any;
 }
 
 export const defaultAppStoreState = {
-    title: 'app.title',
-    language: Languages.en
+  title: "app.title",
+  language: Languages.en
 };
 
 export const defaultAuthStoreState = {
-    token: void 0
+  token: void 0
 };
 
 export const defaultThemeStoreState = {
-    theme: AppTheme.DEFAULT
+  theme: AppTheme.DEFAULT
 };
 
-export const AppStoreContext = React.createContext<AppStoreState>(defaultAppStoreState);
-export const AuthStoreContext = React.createContext<AuthStoreState>(defaultAuthStoreState);
-export const ThemeStoreContext = React.createContext<ThemeStoreState>(defaultThemeStoreState);
+export const AppStoreContext = React.createContext<AppStoreState>(
+  defaultAppStoreState
+);
+export const AuthStoreContext = React.createContext<AuthStoreState>(
+  defaultAuthStoreState
+);
+export const ThemeStoreContext = React.createContext<ThemeStoreState>(
+  defaultThemeStoreState
+);
