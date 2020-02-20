@@ -1,11 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
-import App from './App';
+
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import { Languages } from "./model/NewsApi.model";
+
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from "react-router-dom";
+
 import AuthStore from "./store/AuthStore";
 import AppStore from "./App.store";
+import App from './App';
+
+import './index.scss';
+
+import en from 'i18n/languages/en.json';
+
+i18n
+    .use(initReactI18next)
+    .init({
+        fallbackLng: Languages.en,
+        debug: true,
+        interpolation: {
+            escapeValue: false
+        },
+        resources: {
+            en
+        }
+    });
 
 ReactDOM.render((
     <BrowserRouter>

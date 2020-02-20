@@ -30,7 +30,7 @@ export default function (props: PropsWithChildren<ComponentRecordProps>) {
         if (!props.records.length) {
             return NoRecordFound;
         }
-        const func: any = Object.values(props.children as any).find(value => typeof value === 'function');
-        return props.records.map(record => func(record));
+        // @ts-ignore
+        return props.records.map(record => props.children(record));
     }
 }

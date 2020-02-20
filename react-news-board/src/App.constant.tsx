@@ -3,11 +3,6 @@ import { Redirect } from 'react-router-dom';
 import { RouteProps } from 'react-router';
 import { Routes } from "./model/App.model";
 
-import News from "./component/News";
-import About from "./component/About";
-import SignIn from "./component/SignIn";
-import Home from "./component/Home";
-import NotFound from "./common/NotFound";
 import { AuthStoreContext } from "./store";
 
 const withAuth = (C: React.FunctionComponent) => {
@@ -20,26 +15,34 @@ const withAuth = (C: React.FunctionComponent) => {
 export const ROUTES: Routes = {
     notFound: {
         path: '/not-found',
-        component: NotFound
+        component: React.lazy(() => import('./common/NotFound'))
     },
     signIn: {
         path: '/sign-in',
         exact: true,
-        component: SignIn
+        component: React.lazy(() => import('./component/SignIn'))
     },
     home: {
         path: '/home',
         exact: true,
-        component: withAuth(Home)
+        component: withAuth(React.lazy(() => import('./component/Home'))),
+        useNavigation: true
     },
     news: {
         path: '/news',
         exact: true,
-        component: withAuth(News)
+        component: withAuth(React.lazy(() => import('./component/News'))),
+        useNavigation: true
     },
     about: {
         path: '/about',
         exact: true,
-        component: withAuth(About)
+        component: withAuth(React.lazy(() => import('./component/About'))),
+        useNavigation: true
     }
 };
+
+export function getRouteNavigation() {
+    return Object.values(ROUTES)
+        .filter(r => r.useNavigation);
+}

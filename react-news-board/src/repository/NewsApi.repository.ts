@@ -161,7 +161,6 @@ export const useGetTopHeadlines = (params: ArticleParams): ArticlesState => {
         const source = CancelToken.source();
         newsApiAxios.get<ArticleResponse>(`/top-headlines`, { params, cancelToken: source.token })
             .then(response => {
-                console.log(response);
                 const { articles, totalResults } = response.data;
                 dispatch({ type: RepositoryActionType.SUCCESS, payload: { articles, totalResults } });
             })
@@ -171,7 +170,14 @@ export const useGetTopHeadlines = (params: ArticleParams): ArticlesState => {
         return () => {
             source.cancel('cancel request');
         };
-    }, Object.values(params));
+    }, [
+        params.pageSize,
+        params.category,
+        params.page,
+        params.q,
+        params.country,
+        params.sources
+    ]);
 
     return state;
 };

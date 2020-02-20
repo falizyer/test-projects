@@ -34,7 +34,7 @@ export interface AuthStoreState {
 }
 
 export const defaultAppStoreState = {
-    title: 'app.title.default',
+    title: 'app.title',
     language: Languages.en
 };
 

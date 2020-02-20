@@ -1,27 +1,33 @@
 import React, { useState } from 'react';
-import ApiRecord from "../common/ApiRecord";
-import { useGetTopHeadlines } from "../repository/NewsApi.repository";
-import ArticleComponent from "../common/Article";
-import { Article, Countries } from "../model/NewsApi.model";
+import ApiRecord from '../common/ApiRecord';
+import { ArticleParams, useGetTopHeadlines } from '../repository/NewsApi.repository';
+import ArticleComponent from '../common/Article';
+import { Article, Countries } from '../model/NewsApi.model';
+import TopHeadLinesFormComponent from './home/TopHeadLinesForm';
+import { useTranslation } from 'react-i18next';
 
 export default function () {
-    const [ country, setCountry ] = useState(Countries.us);
-    const { articles, isPending, error } = useGetTopHeadlines({
-        country
+    const { t } = useTranslation();
+    const [ filter, setFilter ] = useState<ArticleParams>({
+        country: Countries.us,
+        q: void 0,
+        page: void 0,
+        category: void 0,
+        pageSize: void 0,
+        sources: void 0
     });
+    const { articles, isPending, error } = useGetTopHeadlines(filter);
     return (
         <section>
-            <header>home</header>
+            <header>{t('app.header.title.home')}</header>
             <div>
-                <select value={country} onChange={e => setCountry(e.target.value as Countries)}>
-                    {Object.values(Countries).map(country => (
-                        <option value={country} label={country}/>
-                    ))}
-                </select>
+                <TopHeadLinesFormComponent
+                    defaultValues={filter}
+                    onSubmit={value => setFilter(value)}
+                />
+
                 <ApiRecord records={articles} isPending={isPending} error={error}>
-                    // @ts-ignore
                     {(article: Article) => (
-                        // @ts-ignore
                         <ArticleComponent key={article.title} {...article}/>
                     )}
                 </ApiRecord>

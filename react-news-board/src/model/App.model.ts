@@ -10,5 +10,5 @@ interface AppRoutes {
 }
 
 export type Routes = {
-    readonly [P in keyof AppRoutes]: RouteProps & { component: React.FC, path: string };
+    readonly [P in keyof AppRoutes]: RouteProps & { component: React.FC, path: string, useNavigation?: boolean };
 }
