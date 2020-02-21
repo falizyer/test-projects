@@ -1,4 +1,3 @@
-import AbstractRepository from "./AbstractRepository";
 import {
   Article,
   Categories,
@@ -7,20 +6,10 @@ import {
   ResponseStatus,
   Source
 } from "../model/NewsApi.model";
-import { AxiosError } from "axios";
-import {
-  PropsWithChildren,
-  Reducer,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useReducer
-} from "react";
+import { Reducer, useEffect, useMemo, useReducer } from "react";
 import axios from "axios";
 import { SignInTrayForm } from "../component/SignInTray";
 import { UserToken } from "../model/Authorization.model";
-import { AuthStoreContext } from "../store";
 
 const newsApiAxios = axios.create({
   baseURL: process.env.REACT_APP_API_NEWSAPI_HOST as string

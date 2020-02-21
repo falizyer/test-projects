@@ -1,0 +1,62 @@
+@function calcContainerWidth($width) {
+  @return $width - $RNB_DEFAULT_CONTAINER_MARGIN -
+    $RNB_DEFAULT_CONTAINER_PADDING;
+}
+
+@mixin rnb-position-middle {
+  margin: 0 auto;
+}
+
+@mixin rnb-ellipsis {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+@mixin rnb-triangle {
+  border-style: solid;
+  height: 0;
+  width: 0;
+  border-color: transparent transparent #b25c9c;
+  border-width: 0 1rem 1rem;
+  content: "";
+}
+
+@mixin rnb-container(
+  $direction: column,
+  $flex: 0,
+  $justify: unset,
+  $align: baseline
+) {
+  display: flex;
+  flex-direction: $direction;
+  flex: $flex;
+  justify-content: $justify;
+  align-items: $align;
+  margin: $RNB_DEFAULT_CONTAINER_MARGIN;
+  padding: $RNB_DEFAULT_CONTAINER_PADDING;
+  width: calcContainerWidth($RNB_DEVICE_XL);
+
+  :root {
+    @media all and (max-width: $RNB_DEVICE_L) {
+      & {
+        width: calcContainerWidth($RNB_DEVICE_L);
+      }
+    }
+
+    @media all and (max-width: $RNB_DEVICE_M) {
+      & {
+        width: calcContainerWidth($RNB_DEVICE_M);
+      }
+    }
+
+    @media all and (max-width: $RNB_DEVICE_S) {
+      & {
+        width: calcContainerWidth($RNB_DEVICE_S);
+      }
+    }
+  }
+}

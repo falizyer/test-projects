@@ -2,8 +2,8 @@ import React, { useContext, useEffect } from "react";
 import { PropsWithChildren } from "react";
 import { useForm, ErrorMessage } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { AuthActions, AuthStoreContext } from "../store";
-import { useSignIn } from "../repository/NewsApi.repository";
+import { AuthActions, AuthStoreContext } from "store";
+import { useSignIn } from "repository/NewsApi.repository";
 
 export interface SignInTrayForm {
   username: string;
@@ -17,7 +17,7 @@ export default function(props: PropsWithChildren<{}>) {
   const { register, handleSubmit, errors } = useForm<SignInTrayForm>({
     defaultValues: {}
   });
-  const [state, callSignIn] = useSignIn();
+  const [state, callSignIn] = useSignIn(void 0);
 
   useEffect(() => {
     if (state.token) {

@@ -1,16 +1,16 @@
 import React, { useContext, useState } from "react";
-import ApiRecord from "../common/ApiRecord";
+import ApiRecord from "common/ApiRecord";
 import {
   ArticleParams,
   useGetTopHeadlines
-} from "../repository/NewsApi.repository";
-import ArticleComponent from "../common/Article";
-import { Article, Countries } from "../model/NewsApi.model";
+} from "repository/NewsApi.repository";
+import ArticleComponent from "common/Article";
+import { Article, Countries } from "model/NewsApi.model";
 import TopHeadLinesFormComponent from "./home/TopHeadLinesForm";
 import { useTranslation } from "react-i18next";
 
 import "./Home.scss";
-import { ThemeStoreContext } from "../store";
+import { ThemeStoreContext } from "store";
 
 export default function() {
   const { theme } = useContext(ThemeStoreContext);

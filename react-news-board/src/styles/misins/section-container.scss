@@ -4,7 +4,7 @@
 }
 
 @mixin rnb-section-container-content($include: false) {
-  @if($include) {
+  @if ($include) {
     @include rnb-section-container();
   }
 }
@@ -16,10 +16,7 @@
 
 @mixin rnb-section-container($direction: column, $include: false) {
   & {
-    display: flex;
-    flex-direction: $direction;
-    margin: $RNB_DEFAULT_CONTAINER_MARGIN;
-    padding: $RNB_DEFAULT_CONTAINER_PADDING;
+    @include rnb-container;
 
     & > header.rnb-header {
       @include rnb-section-container-header();
