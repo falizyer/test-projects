@@ -4,5 +4,5 @@
 .rnb-home-component {
   @include rnb-theme();
   @include rnb-section-container(column, true);
-
+  @include rnb-margin-middle;
 }

@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, ReactNode } from "react";
+import React, { PropsWithChildren } from "react";
 
 export interface ComponentRecordProps<T = any> {
   records?: T[];

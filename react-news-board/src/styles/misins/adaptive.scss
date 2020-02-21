@@ -1,0 +1,30 @@
+.display-s,
+.display-m,
+.display-l,
+.display-xl {
+  display: none;
+}
+
+@media screen and (min-width: $RNB_DEVICE_S) {
+  .display-s {
+    display: unset;
+  }
+}
+
+@media screen and (min-width: $RNB_DEVICE_M) {
+  .display-m {
+    display: unset;
+  }
+}
+
+@media screen and (min-width: $RNB_DEVICE_L) {
+  .display-l {
+    display: unset;
+  }
+}
+
+@media screen and (min-width: $RNB_DEVICE_XL) {
+  .display-xl {
+    display: unset;
+  }
+}

@@ -1,5 +1,13 @@
-@mixin rnb-input-field() {}
+@mixin rnb-input-field() {
+}
 
-@mixin rnb-select-field() {}
+@mixin rnb-select-field() {
+}
 
-@mixin rnb-form() {}
+@mixin rnb-form() {
+  @include rnb-container(column);
+
+  &__row {
+    @include rnb-container(row, 0, space-between, center);
+  }
+}

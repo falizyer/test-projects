@@ -1,0 +1,10 @@
+@import "src/styles/variables";
+@import "src/styles/misins/common";
+
+.rnb-navigation {
+  @include rnb-container(row, 0 1);
+
+  &__menu-list {
+    @include rnb-container(row, 0 1);
+  }
+}

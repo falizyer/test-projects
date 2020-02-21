@@ -1,0 +1,7 @@
+@import "src/styles/variables";
+@import "src/styles/misins/common";
+@import "src/styles/misins/form";
+
+.sign-in-tray {
+  @include rnb-form;
+}

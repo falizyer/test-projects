@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import ApiRecord from "common/ApiRecord";
+import ApiRecord from " @app/common/ApiRecord";
 import {
   ArticleParams,
   useGetTopHeadlines
@@ -26,10 +26,11 @@ export default function() {
   const { articles, isPending, error } = useGetTopHeadlines(filter);
   return (
     <section className={`rnb-home-component rnb-${theme}-theme`}>
-      <header className="rnb-home-component__header rnb-header">
+      <header className="rnb-home-component__header">
         {t("app.header.title.home")}
       </header>
-      <div className="rnb-home-component__content rnb-content">
+
+      <div className="rnb-home-component__content">
         <TopHeadLinesFormComponent
           defaultValues={filter}
           onSubmit={value => setFilter(value)}

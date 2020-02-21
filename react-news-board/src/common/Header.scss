@@ -3,9 +3,9 @@
 
 .rnb-header {
   @include rnb-container(row, 1 1);
-  margin: 0;
+  @include rnb-margin-middle;
 
   &__content {
-    @include rnb-container(row, 1 1);
+    @include rnb-container(row, 1 1, unset, center);
   }
 }

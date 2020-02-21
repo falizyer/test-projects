@@ -1,10 +1,10 @@
 @function calcContainerWidth($width) {
-  @return $width - $RNB_DEFAULT_CONTAINER_MARGIN -
-    $RNB_DEFAULT_CONTAINER_PADDING;
+  @return ($width - $RNB_CONTAINER_MARGIN_WIDTH - $RNB_CONTAINER_PADDING_WIDTH);
 }
 
-@mixin rnb-position-middle {
-  margin: 0 auto;
+@mixin rnb-margin-middle($width: 100%) {
+  width: $width;
+  margin: $RNB_CONTAINER_MARGIN_TOP auto $RNB_CONTAINER_MARGIN_BOTTOM auto;
 }
 
 @mixin rnb-ellipsis {
@@ -36,27 +36,50 @@
   flex: $flex;
   justify-content: $justify;
   align-items: $align;
-  margin: $RNB_DEFAULT_CONTAINER_MARGIN;
-  padding: $RNB_DEFAULT_CONTAINER_PADDING;
-  width: calcContainerWidth($RNB_DEVICE_XL);
+  margin: $RNB_CONTAINER_MARGIN;
+  padding: $RNB_CONTAINER_PADDING;
+  max-width: calcContainerWidth($RNB_DEVICE_S);
 
   :root {
-    @media all and (max-width: $RNB_DEVICE_L) {
-      & {
-        width: calcContainerWidth($RNB_DEVICE_L);
+    @each $resolution in $RNB_DEVICE_RESOLUTIONS {
+      @media screen and (max-width: $resolution) {
+        & {
+          max-width: calcContainerWidth($resolution);
+        }
       }
     }
+  }
+}
 
-    @media all and (max-width: $RNB_DEVICE_M) {
-      & {
-        width: calcContainerWidth($RNB_DEVICE_M);
-      }
-    }
+@mixin rnb-font-size($width) {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: bold;
+  }
 
-    @media all and (max-width: $RNB_DEVICE_S) {
-      & {
-        width: calcContainerWidth($RNB_DEVICE_S);
-      }
-    }
+  h1 {
+    font-size: $width + $width * 0.6;
+    line-height: $width + $width * 0.6;
+  }
+
+  h2 {
+    font-size: $width + $width * 0.4;
+    line-height: $width + $width * 0.4;
+  }
+
+  h3 {
+    font-size: $width + $width * 0.2;
+    line-height: $width + $width * 0.2;
+  }
+
+  h4,
+  p,
+  li,
+  label,
+  span {
+    font-size: $width;
+    line-height: $width;
   }
 }

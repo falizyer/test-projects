@@ -5,6 +5,8 @@ import { useTranslation } from "react-i18next";
 import { AuthActions, AuthStoreContext } from "store";
 import { useSignIn } from "repository/NewsApi.repository";
 
+import "./SignInTray.scss";
+
 export interface SignInTrayForm {
   username: string;
   password: string;
@@ -29,7 +31,7 @@ export default function(props: PropsWithChildren<{}>) {
   }, [state.token]);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form className="sign-in-tray" onSubmit={handleSubmit(onSubmit)}>
       <input
         type="text"
         name="username"

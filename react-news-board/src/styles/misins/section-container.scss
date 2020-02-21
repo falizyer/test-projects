@@ -1,34 +1,17 @@
-@mixin rnb-section-container-header() {
-  display: flex;
-  flex-direction: row;
-}
-
-@mixin rnb-section-container-content($include: false) {
-  @if ($include) {
-    @include rnb-section-container();
-  }
-}
-
-@mixin rnb-section-container-footer() {
-  display: flex;
-  flex-direction: row;
-}
-
 @mixin rnb-section-container($direction: column, $include: false) {
-  & {
-    @include rnb-container;
+  @include rnb-container;
 
-    & > header.rnb-header {
-      @include rnb-section-container-header();
-    }
+  &__header {
+    @include rnb-container(row);
+  }
 
-    & > div.rnb-content,
-    & > section.rnb-content {
-      @include rnb-section-container-content($include);
+  &__content {
+    @if ($include) {
+      @include rnb-section-container;
     }
+  }
 
-    & > footer.rnb-footer {
-      @include rnb-section-container-footer();
-    }
+  &__footer {
+    @include rnb-container(row);
   }
 }

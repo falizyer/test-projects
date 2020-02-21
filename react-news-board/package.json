@@ -20,6 +20,8 @@
     "react-hook-form": "^4.9.3",
     "react-i18next": "^11.3.3",
     "react-router-dom": "^5.1.2",
+    "react-scripts": "^3.4.0",
+    "reset-css": "^5.0.1",
     "underscore": "^1.9.2"
   },
   "scripts": {
@@ -50,7 +52,6 @@
     "node-sass": "^4.13.1",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
-    "react-scripts": "3.4.0",
     "typescript": "^3.7.5"
   },
   "husky": {
