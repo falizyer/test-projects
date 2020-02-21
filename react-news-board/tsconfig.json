@@ -4,8 +4,8 @@
     "baseUrl": ".",
     "lib": ["dom", "dom.iterable", "esnext"],
     "files": {
-      "app/*": ["./src/*"],
-      "public/*": ["./public/*"]
+      "@app/*": ["./src/*"],
+      "@public/*": ["./public/*"]
     },
     "allowJs": true,
     "skipLibCheck": true,

@@ -1,11 +1,12 @@
 import React, { PropsWithChildren, useReducer } from "react";
+
 import {
   AuthActions,
   AuthStoreState,
   defaultAuthStoreState,
   IAction,
   AuthStoreContext
-} from "../store";
+} from "@app/store";
 
 function reducer(
   state: Omit<AuthStoreState, "dispatch">,

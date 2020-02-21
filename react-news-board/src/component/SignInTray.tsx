@@ -2,8 +2,9 @@ import React, { useContext, useEffect } from "react";
 import { PropsWithChildren } from "react";
 import { useForm, ErrorMessage } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { AuthActions, AuthStoreContext } from "store";
-import { useSignIn } from "repository/NewsApi.repository";
+
+import { AuthActions, AuthStoreContext } from "@app/store";
+import { useSignIn } from "@app/repository/NewsApi.repository";
 
 import "./SignInTray.scss";
 

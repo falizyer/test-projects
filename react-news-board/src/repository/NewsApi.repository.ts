@@ -8,8 +8,9 @@ import {
 } from "../model/NewsApi.model";
 import { Reducer, useEffect, useMemo, useReducer } from "react";
 import axios from "axios";
-import { SignInTrayForm } from "../component/SignInTray";
-import { UserToken } from "../model/Authorization.model";
+
+import { SignInTrayForm } from "@app/component/SignInTray";
+import { UserToken } from "@app/model/Authorization.model";
 
 const newsApiAxios = axios.create({
   baseURL: process.env.REACT_APP_API_NEWSAPI_HOST as string

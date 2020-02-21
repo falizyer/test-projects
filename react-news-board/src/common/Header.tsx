@@ -1,7 +1,9 @@
 import React, { useContext, PropsWithChildren } from "react";
-import { AppStoreContext, ThemeStoreContext } from "store";
 import { useTranslation } from "react-i18next";
-import Logo from "../../public/logo512.png";
+
+import { AppStoreContext, ThemeStoreContext } from "@app/store";
+
+import Logo from "@public/logo512.png";
 
 import "./Header.scss";
 

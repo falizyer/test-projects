@@ -3,29 +3,30 @@ import ReactDOM from "react-dom";
 
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import { Languages } from "./model/NewsApi.model";
+
+import { Languages } from "@app/model/NewsApi.model";
 
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 
+import ThemeStore from "./store/ThemeStore";
 import AuthStore from "./store/AuthStore";
 import AppStore from "./App.store";
-import ThemeStore from "./store/ThemeStore";
 import App from "./App";
 
 import "./index.scss";
 
-import en from "i18n/languages/en.json";
+import en from "@public/i18n/languages/en.json";
 
 i18n.use(initReactI18next).init({
   fallbackLng: Languages.en,
   debug: true,
   interpolation: {
-    escapeValue: false,
+    escapeValue: false
   },
   resources: {
-    en,
-  },
+    en
+  }
 });
 
 ReactDOM.render(
