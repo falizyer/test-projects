@@ -14,6 +14,7 @@
     "axios": "^0.19.2",
     "i18next": "^19.2.0",
     "lodash": "^4.17.15",
+    "node-gyp": "^6.1.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-hook-form": "^4.9.3",
@@ -24,12 +25,10 @@
     "y18n": "^4.0.0"
   },
   "scripts": {
-    "preinstall": "npm i windows-build-tools",
-    "start": "webpack-dev-server config/webpack.config.js --mode=development",
-    "build": "webpack config/webpack.config.js --mode=production",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "pre-commit": "prettier --trailing-comma es5 --write src/**/*.tsx && prettier --trailing-comma es5 --write src/**/*.ts"
+    "eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [
@@ -48,15 +47,10 @@
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.13.1",
     "path": "^0.12.7",
-    "prettier": "^1.19.1",
-    "pretty-quick": "^2.0.1",
-    "source-map-loader": "^0.2.4",
+    "react-scripts": "^3.4.0",
     "ts-loader": "^6.2.1",
     "typescript": "^3.8.2",
-    "webpack": "^3.12.0",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.10.3",
-    "windows-build-tools": "^5.2.2",
     "yaml": "^1.7.2",
     "yargs": "^15.1.0"
   }

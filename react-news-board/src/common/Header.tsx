@@ -1,9 +1,9 @@
 import React, { useContext, PropsWithChildren } from "react";
 import { useTranslation } from "react-i18next";
 
-import { AppStoreContext, ThemeStoreContext } from "@app/store";
+import { AppStoreContext, ThemeStoreContext } from "../store";
 
-import Logo from "@public/logo512.png";
+// import Logo from "../logo512.png";
 
 import "./Header.scss";
 
@@ -14,7 +14,7 @@ export default function(props: PropsWithChildren<{}>) {
   return (
     <header className={`rnb-header rnb-${theme}-theme`}>
       <h1 className="rnb-header__title">
-        <img src={Logo} title={t(title)} alt={t(title)} />
+        {/*<img src={Logo} title={t(title)} alt={t(title)} />*/}
       </h1>
       <div className="rnb-header__content">{props.children}</div>
     </header>

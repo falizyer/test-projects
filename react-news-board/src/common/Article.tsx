@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from "react";
 
-import { Article } from "@app/model/NewsApi.model";
+import { Article } from "../model/NewsApi.model";
 
 export default function(props: PropsWithChildren<Article>) {
   return (

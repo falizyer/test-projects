@@ -6,7 +6,7 @@ import {
   defaultAuthStoreState,
   IAction,
   AuthStoreContext
-} from "@app/store";
+} from "../store";
 
 function reducer(
   state: Omit<AuthStoreState, "dispatch">,

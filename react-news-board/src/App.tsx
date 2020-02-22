@@ -1,12 +1,12 @@
 import React, { useContext, Suspense } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import Header from "@app/common/Header";
-import Navigation from "@app/common/Navigation";
-import NotFound from "@app/common/NotFound";
-import ThemeSwitcher from "@app/common/ThemeSwitcher";
-import { AuthStoreContext } from "@app/store";
-import SignInTray from "@app/component/SignInTray";
+import Header from "./common/Header";
+import Navigation from "./common/Navigation";
+import NotFound from "./common/NotFound";
+import ThemeSwitcher from "./common/ThemeSwitcher";
+import { AuthStoreContext } from "./store";
+import SignInTray from "./component/SignInTray";
 
 import { ROUTES } from "./App.constant";
 import "./App.scss";

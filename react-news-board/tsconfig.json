@@ -8,14 +8,6 @@
       "dom.iterable",
       "esnext"
     ],
-    "files": {
-      "@app/*": [
-        "./src/*"
-      ],
-      "@public/*": [
-        "./public/*"
-      ]
-    },
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,

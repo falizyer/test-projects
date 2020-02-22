@@ -1,8 +1,8 @@
 import React, { PropsWithChildren, useContext } from "react";
 import { Redirect } from "react-router-dom";
 
-import { AuthStoreContext } from "@app/store";
-import { ROUTES } from "@app/App.constant";
+import { AuthStoreContext } from "../store";
+import { ROUTES } from "../App.constant";
 
 export default function AuthCheck(props: PropsWithChildren<any>) {
   const authState = useContext(AuthStoreContext);

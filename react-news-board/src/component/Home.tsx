@@ -1,14 +1,14 @@
 import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { ThemeStoreContext } from "@app/store";
-import ApiRecord from "@app/common/ApiRecord";
+import { ThemeStoreContext } from "../store";
+import ApiRecord from "../common/ApiRecord";
 import {
   ArticleParams,
   useGetTopHeadlines
-} from "@app/repository/NewsApi.repository";
-import ArticleComponent from "@app/common/Article";
-import { Article, Countries } from "@app/model/NewsApi.model";
+} from "../repository/NewsApi.repository";
+import ArticleComponent from "../common/Article";
+import { Article, Countries } from "../model/NewsApi.model";
 
 import TopHeadLinesFormComponent from "./home/TopHeadLinesForm";
 

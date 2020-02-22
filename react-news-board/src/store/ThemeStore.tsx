@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, useState } from "react";
 
-import { defaultThemeStoreState, ThemeStoreContext } from "@app/store";
+import { defaultThemeStoreState, ThemeStoreContext } from "../store";
 
 export default function(props: PropsWithChildren<{}>) {
   const [theme, setTheme] = useState(defaultThemeStoreState.theme);

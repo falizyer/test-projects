@@ -1,13 +1,13 @@
 import React, { PropsWithChildren, useContext, useEffect } from "react";
 import { withRouter, RouteProps } from "react-router-dom";
 
-import { AppTheme, ThemeStoreContext } from "@app/store";
+import { AppTheme, ThemeStoreContext } from "../store";
 
 export function ThemeSwitcher(props: PropsWithChildren<RouteProps>) {
   const { theme, setTheme } = useContext(ThemeStoreContext);
 
   useEffect(() => {
-    import(`styles/${theme}.theme.scss`);
+    import(`../styles/${theme}.theme.scss`);
   }, [theme]);
 
   return (

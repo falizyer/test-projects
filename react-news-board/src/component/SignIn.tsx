@@ -2,7 +2,7 @@ import React, { PropsWithChildren, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { FieldValues } from "react-hook-form/dist/types";
 
-import { AuthActions, AuthStoreContext } from "@app/store";
+import { AuthActions, AuthStoreContext } from "../store";
 
 const fields: FieldValues = {
   userName: "userName",

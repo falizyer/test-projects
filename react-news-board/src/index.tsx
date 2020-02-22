@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
-import { Languages } from "@app/model/NewsApi.model";
+import { Languages } from "./model/NewsApi.model";
 
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
@@ -16,7 +16,7 @@ import App from "./App";
 
 import "./index.scss";
 
-import en from "@public/i18n/languages/en.json";
+import en from "./i18n/languages/en.json";
 
 i18n.use(initReactI18next).init({
   fallbackLng: Languages.en,

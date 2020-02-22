@@ -2,8 +2,8 @@ import React, { PropsWithChildren } from "react";
 import { useForm, ErrorMessage, OnSubmit } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import { Categories, Countries } from "@app/model/NewsApi.model";
-import { ArticleParams } from "@app/repository/NewsApi.repository";
+import { Categories, Countries } from "../../model/NewsApi.model";
+import { ArticleParams } from "../../repository/NewsApi.repository";
 
 import { FormFields } from "./TopHeadLinesForm.constant";
 
