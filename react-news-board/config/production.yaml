@@ -1,0 +1,6 @@
+env:
+  API_NEWSAPI_HOST: https://newsapi.org/v2
+  API_NEWSAPI_KEY: b692d5f34dda413cab3001f0ee499f80
+meta:
+  viewport: "width=device-width, initial-scale=1, shrink-to-fit=no"
+  description: "Web site created using create-react-app"

@@ -1,11 +1,20 @@
 {
   "compilerOptions": {
+    "outDir": "./dist/",
     "target": "es5",
     "baseUrl": ".",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "files": {
-      "@app/*": ["./src/*"],
-      "@public/*": ["./public/*"]
+      "@app/*": [
+        "./src/*"
+      ],
+      "@public/*": [
+        "./public/*"
+      ]
     },
     "allowJs": true,
     "skipLibCheck": true,
@@ -20,5 +29,8 @@
     "noEmit": true,
     "jsx": "react"
   },
-  "include": ["src", "public"]
+  "include": [
+    "src",
+    "public"
+  ]
 }
