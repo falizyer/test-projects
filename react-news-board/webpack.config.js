@@ -6,19 +6,17 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const rootPath = path.resolve(__dirname, "../");
 
-console.log(yaml.parse(require("./development.yaml")));
-
-const configFile = fs.readFileSync(`./${yargs.argv.mode}.yaml`);
+const configFile = fs.readFileSync(`./${"development"}.yaml`);
 const config = yaml.parse(configFile);
 
 module.exports = {
     target: 'web',
 
-    node: { fs: 'empty' },
+    node: {fs: 'empty'},
+
+    mode: "development",
 
     context: path.resolve(__dirname, "../"),
-
-    mode: yargs.argv.mode,
 
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
